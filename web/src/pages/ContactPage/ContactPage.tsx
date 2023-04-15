@@ -53,45 +53,69 @@ const ContactPage = () => {
 
       <Toaster />
       <Form onSubmit={onSubmit} error={error} formMethods={formMethods}>
-        <FormError error={error} wrapperClassName="form-error" />
-
-        <Label errorClassName="error" name="name">
+        <FormError
+          error={error}
+          wrapperClassName="py-4 px-6 rounded-lg bg-red-100 text-red-700"
+          listClassName="list-disc ml-4"
+          listItemClassName=""
+        />
+        <Label
+          name="name"
+          className="block text-sm uppercase text-gray-700"
+          errorClassName="block uppercase text-sm text-red-700"
+        >
           Name
         </Label>
         <TextField
-          errorClassName="error"
           name="name"
           validation={{ required: true }}
+          className="rounded-sm border px-2 py-1 outline-none"
+          errorClassName="border rounded-sm px-2 py-1 border-red-700 outline-none"
         />
-        <FieldError name="name" className="error" />
+        <FieldError name="name" className="block text-red-700" />
 
-        <Label errorClassName="error" name="email">
+        <Label
+          name="email"
+          className="mt-8 block text-sm uppercase text-gray-700"
+          errorClassName="block mt-8 text-red-700 uppercase text-sm"
+        >
           Email
         </Label>
         <TextField
-          errorClassName="error"
           name="email"
           validation={{
             required: true,
             pattern: {
-              value: /^[^@]+@[^.]+\..+$/,
+              value: /[^@]+@[^.]+\..+/,
               message: 'Please enter a valid email address',
             },
           }}
+          className="rounded-sm border px-2 py-1"
+          errorClassName="border rounded-sm px-2 py-1 border-red-700 outline-none"
         />
-        <FieldError name="email" className="error" />
+        <FieldError name="email" className="block text-red-700" />
 
-        <Label errorClassName="error" name="message">
+        <Label
+          name="message"
+          className="mt-8 block text-sm uppercase text-gray-700"
+          errorClassName="block mt-8 text-red-700 uppercase text-sm"
+        >
           Message
         </Label>
         <TextAreaField
-          errorClassName="error"
           name="message"
           validation={{ required: true }}
+          className="block rounded-sm border px-2 py-1"
+          errorClassName="block border rounded-sm px-2 py-1 border-red-700 outline-none"
         />
-        <FieldError name="message" className="error" />
+        <FieldError name="message" className="block text-red-700" />
 
-        <Submit disabled={loading}>Save</Submit>
+        <Submit
+          className="mt-8 block rounded bg-blue-700 px-4 py-2 text-white"
+          disabled={loading}
+        >
+          Save
+        </Submit>
       </Form>
     </>
   )

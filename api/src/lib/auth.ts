@@ -25,9 +25,9 @@ export const getCurrentUser = async (session: Decoded) => {
     throw new Error('Invalid session')
   }
 
-  return await db.user.findUnique({
+  return db.user.findUnique({
     where: { id: session.id },
-    select: { id: true, email: true },
+    select: { id: true, email: true, roles: true },
   })
 }
 

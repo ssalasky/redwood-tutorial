@@ -1,7 +1,7 @@
 import type { EditPostById, UpdatePostInput } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import type { CellSuccessProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
@@ -9,7 +9,7 @@ import PostForm from 'src/components/Post/PostForm'
 
 export const QUERY = gql`
   query EditPostById($id: Int!) {
-    post: post(id: $id) {
+    post: adminPost(id: $id) {
       id
       title
       body
@@ -29,10 +29,6 @@ const UPDATE_POST_MUTATION = gql`
 `
 
 export const Loading = () => <div>Loading...</div>
-
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error?.message}</div>
-)
 
 export const Success = ({ post }: CellSuccessProps<EditPostById>) => {
   const [updatePost, { loading, error }] = useMutation(UPDATE_POST_MUTATION, {
